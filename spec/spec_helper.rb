@@ -22,9 +22,15 @@ require 'capybara/poltergeist'
 
 ENV['RACK_ENV'] = 'test'
 
-require File.join(File.dirname(__FILE__), '..', 'app.rb')
+require File.join(File.dirname(__FILE__), '..', 'app', 'app.rb')
 
-Capybara.app = Bookmark
+require 'capybara/rspec'
+require 'database_cleaner'
+
+require './app/app'
+require './app/models/link'
+
+Capybara.app = BookmarkManager
 
 RSpec.configure do |config|
   config.include Capybara::DSL
@@ -61,6 +67,19 @@ RSpec.configure do |config|
   Capybara.configure do |c|
     c.javascript_driver = :poltergeist
     c.default_driver = :poltergeist
+  end
+  
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with(:truncation)
+  end
+  
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+  
+  config.append_after(:each) do
+    DatabaseCleaner.clean
   end
   
 # The settings below are suggested to provide a good initial experience

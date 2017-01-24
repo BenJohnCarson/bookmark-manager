@@ -1,0 +1,21 @@
+<!--<link rel="stylesheet" href="css.css" type="text/css" /> -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+  </head>
+  <body>
+      <header>
+        <h1> Links </h1>
+      </header>
+      <ul id='links'>
+          <% @links.each do |link| %>
+          <li>
+              Title: <%= link.title %>
+              URL: <%= link.url %>
+          </li>
+          <% end %>
+      </ul>
+  </body>
+</html>
