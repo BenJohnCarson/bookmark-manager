@@ -27,6 +27,7 @@ require 'database_cleaner'
 
 require './app/app'
 require './app/models/link'
+require 'features/web_helpers'
 
 Capybara.app = BookmarkManager
 

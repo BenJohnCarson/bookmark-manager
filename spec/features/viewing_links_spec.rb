@@ -6,6 +6,7 @@ feature 'Viewing links' do
     end
     
     scenario 'I can see existing links on the links page' do
+        sign_up
         visit '/links'
         expect(page.status_code).to eq 200
         within 'ul#links' do
@@ -14,6 +15,7 @@ feature 'Viewing links' do
     end
     
     scenario "I can filter my links by tag" do
+        sign_up
         visit 'tags/search'
         expect(page.status_code).to eq(200)
         within 'ul#links' do
