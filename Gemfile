@@ -6,9 +6,11 @@ gem 'data_mapper'
 gem 'dm-postgres-adapter'
 gem 'pg'
 gem 'database_cleaner'
-
-gem 'sinatra'
-gem 'rspec'
-gem 'capybara'
 gem 'shotgun'
 gem 'poltergeist'
+gem 'sinatra'
+
+group :test do
+    gem 'rspec'
+    gem 'capybara'
+end
