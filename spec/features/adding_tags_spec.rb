@@ -4,12 +4,9 @@ feature "Adding tags" do
         fill_in 'url', with: 'http://www.google.co.uk'
         fill_in 'title', with: 'This is Google'
         fill_in 'tag', with: 'search engine'
+        
         click_button 'Create link'
-        
-        expect(current_path).to eq '/links'
-        
-        within 'ul#links' do
-            expect(page).to have_content('search engine')
+        link = Link.first
+        expect(link.tags.map(&:name)).to include('search engine')
         end
-    end
 end
