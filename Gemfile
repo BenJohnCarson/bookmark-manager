@@ -10,6 +10,7 @@ gem 'shotgun'
 gem 'poltergeist'
 gem 'sinatra'
 gem 'rake'
+gem 'bcrypt'
 
 group :test do
     gem 'rspec'
