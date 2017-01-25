@@ -9,6 +9,7 @@ gem 'database_cleaner'
 gem 'shotgun'
 gem 'poltergeist'
 gem 'sinatra'
+gem 'rake'
 
 group :test do
     gem 'rspec'
