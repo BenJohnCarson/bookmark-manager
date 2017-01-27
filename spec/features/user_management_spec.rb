@@ -29,3 +29,17 @@ feature "user signup" do
         expect(page).to have_content('Welcome, michael@jackson.com')
     end
 end
+
+feature "User sign in" do 
+    
+    let!(:user) do
+        User.create(email: 'michael@jackson.com',
+                    password: 'password',
+                    password_confirmation: 'password')
+    end
+    
+    scenario 'sign in with correct details' do
+        sign_in(email: user.email, password: user.password)
+        expect(page).to have_content "Welcome, #{user.email}"
+    end
+end
