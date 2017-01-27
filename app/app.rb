@@ -6,6 +6,8 @@ require 'tilt/erb'
 require_relative 'data_mapper_setup'
 
 class BookmarkManager < Sinatra::Base
+    use Rack::MethodOverride
+    
     enable :sessions
     set :session_secret, 'super secret'
     
@@ -76,6 +78,12 @@ class BookmarkManager < Sinatra::Base
             flash.now[:errors] = ["The email or password is incorrect"]
             erb :'sessions/new'
         end
+    end
+    
+    delete '/sessions' do
+        session[:user_id] = nil
+        flash.keep[:notice] = 'Farewell!'
+        redirect to '/links'
     end
     
     # start the server if ruby file executed directly
